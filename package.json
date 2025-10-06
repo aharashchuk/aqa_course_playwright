@@ -1,0 +1,22 @@
+{
+  "name": "aqa_course_playwright",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aharashchuk/aqa_course_playwright.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aharashchuk/aqa_course_playwright/issues"
+  },
+  "homepage": "https://github.com/aharashchuk/aqa_course_playwright#readme",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.56.0",
+    "@types/node": "^24.7.0"
+  }
+}

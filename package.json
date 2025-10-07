@@ -2,7 +2,14 @@
   "name": "aqa_course_playwright",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "build": "npx tsc",
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:debug": "npx playwright test --debug",
+    "codegen": "npx playwright codegen",
+    "test:report": "npx playwright show-report"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aharashchuk/aqa_course_playwright.git"
@@ -17,6 +24,12 @@
   "description": "",
   "devDependencies": {
     "@playwright/test": "^1.56.0",
-    "@types/node": "^24.7.0"
+    "@types/lodash": "^4.17.20",
+    "@types/node": "^24.7.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
   }
 }

@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { selectors, NOTIFICATIONS,  } from './hw_19_variables.spec'
 
   // Разработайте смоук тест-сьют с тестами на REGISTER на странице https://anatoly-karpovich.github.io/demo-login-form/
   // Требования:

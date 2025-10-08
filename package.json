@@ -4,6 +4,11 @@
   "main": "index.js",
   "scripts": {
     "build": "npx tsc",
+    "start": "node ./dist/index.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prettier": "prettier --config .prettierrc src/**/*.ts --check src/",
+    "prettier:fix": "prettier --config .prettierrc src/**/*.ts --write src/",
     "test": "npx playwright test",
     "test:headed": "npx playwright test --headed",
     "test:debug": "npx playwright test --debug",
@@ -23,11 +28,19 @@
   "homepage": "https://github.com/aharashchuk/aqa_course_playwright#readme",
   "description": "",
   "devDependencies": {
+    "@eslint/js": "^9.37.0",
     "@playwright/test": "^1.56.0",
     "@types/lodash": "^4.17.20",
     "@types/node": "^24.7.0",
+    "eslint": "^9.37.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "globals": "^16.4.0",
+    "jiti": "^2.6.1",
+    "prettier": "^3.6.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.0"
   },
   "dependencies": {
     "lodash": "^4.17.21"

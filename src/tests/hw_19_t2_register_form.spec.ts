@@ -58,7 +58,7 @@ const userData: IUserData = {
 test.describe("[SMOKE][DEMO REGISTRATION FORM]", () => {
   const url = "https://anatoly-karpovich.github.io/demo-registration-form/";
 
-  test("User registration with valid credentials", async ({ page }) => {
+  test("User registration with valid userdata", async ({ page }) => {
     // Selectors
     const pageTitle = page.locator("h2");
     const firstNameInput = page.locator("#firstName");

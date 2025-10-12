@@ -92,7 +92,11 @@ test.describe("[SMOKE][DEMO REGISTRATION FORM]", () => {
     await emailInput.fill(userData.email);
     await phoneInput.fill(userData.phone.toString());
     await countryDropdown.selectOption({ label: userData.country });
-    userData.gender === "Male" ? await genderMaleRadio.check() : await genderFemaleRadio.check();
+const genderInputs = {
+  'Male': genderMaleRadio,
+  'Female': genderFemaleRadio,
+}
+await genderInputs[userData.gender].check()
     for (const hobby of userData.hobbies) {
       await hobbiesCheckboxes(hobby).check();
     }

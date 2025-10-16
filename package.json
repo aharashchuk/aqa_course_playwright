@@ -10,6 +10,7 @@
     "prettier": "prettier --config .prettierrc src/**/*.ts --check src/",
     "prettier:fix": "prettier --config .prettierrc src/**/*.ts --write src/",
     "test": "npx playwright test",
+    "ui-mode": "npx playwright test --ui",
     "test:headed": "npx playwright test --headed",
     "test:debug": "npx playwright test --debug",
     "codegen": "npx playwright codegen",

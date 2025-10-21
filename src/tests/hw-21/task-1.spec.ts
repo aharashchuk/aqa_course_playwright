@@ -20,7 +20,7 @@ interface ICredentials {
 }
 
 interface IInvalidCredentials extends ICredentials {
-  notification: NOTIFICATIONS;
+  message: NOTIFICATIONS;
   title: string;
 }
 
@@ -28,6 +28,8 @@ enum NOTIFICATIONS {
   REGISTERED = "Successfully registered! Please, click Back to return on login page",
   SHORT_PASSWORD = "Password should contain at least 8 characters",
   SHORT_USERNAME = "Username should contain at least 3 characters",
+  LONG_USERNAME = "Username should contain at most 40 characters",
+  LONG_PASSWORD = "Password should contain at most 20 characters",
   BAN_SPACES = "Prefix and postfix spaces are not allowed is username",
   PASSWORD_MISS_UPPERCASE = "Password should contain at least one character in upper case",
   PASSWORD_MISS_LOWERCASE = "Password should contain at least one character in lower case",
@@ -37,49 +39,59 @@ enum NOTIFICATIONS {
 
 const invalidCredentials: IInvalidCredentials[] = [
   {
-    title: "Not registered with short username",
+    title: "Not registered. Short username",
     credentials: { username: "us", password: "Password1" },
-    notification: NOTIFICATIONS.SHORT_USERNAME
+    message: NOTIFICATIONS.SHORT_USERNAME
   },
   {
-    title: "Not registered username with spaces",
+    title: "Not registered. Username with spaces",
     credentials: { username: " ", password: "Password1" },
-    notification: NOTIFICATIONS.BAN_SPACES
+    message: NOTIFICATIONS.BAN_SPACES
   },
   {
-    title: "Not registered empty username",
+    title: "Not registered. Empty username",
     credentials: { username: "", password: "Password1" },
-    notification: NOTIFICATIONS.EMPTY_USERNAME
+    message: NOTIFICATIONS.EMPTY_USERNAME
   },
   {
-    title: "Not registered username with leading space",
+    title: "Not registered. Username with leading space",
     credentials: { username: " user3", password: "Password1" },
-    notification: NOTIFICATIONS.BAN_SPACES
+    message: NOTIFICATIONS.BAN_SPACES
   },
   {
-    title: "Not registered username with trailing space",
+    title: "Not registered. Username with trailing space",
     credentials: { username: "user4 ", password: "Password1" },
-    notification: NOTIFICATIONS.BAN_SPACES
+    message: NOTIFICATIONS.BAN_SPACES
   },
   {
-    title: "Not registered short password",
+    title: "Not registered. Short password",
     credentials: { username: "user5", password: "pass" },
-    notification: NOTIFICATIONS.SHORT_PASSWORD
+    message: NOTIFICATIONS.SHORT_PASSWORD
   },
   {
-    title: "Not registered password without uppercase",
+    title: "Not registered. Password without uppercase",
     credentials: { username: "user6", password: "password" },
-    notification: NOTIFICATIONS.PASSWORD_MISS_UPPERCASE
+    message: NOTIFICATIONS.PASSWORD_MISS_UPPERCASE
   },
   {
-    title: "Not registered password without lowercase",
+    title: "Not registered. Password without lowercase",
     credentials: { username: "user7", password: "PASSWORD" },
-    notification: NOTIFICATIONS.PASSWORD_MISS_LOWERCASE
+    message: NOTIFICATIONS.PASSWORD_MISS_LOWERCASE
   },
   {
-    title: "Not registered empty password",
+    title: "Not registered. Empty password",
     credentials: { username: "user8", password: " " },
-    notification: NOTIFICATIONS.EMPTY_PASSWORD
+    message: NOTIFICATIONS.EMPTY_PASSWORD
+  },
+  {
+    title: "Not registered. Too long username",
+    credentials: { username: "u".repeat(41), password: "Password1" },
+    message: NOTIFICATIONS.SHORT_USERNAME
+  },
+  {
+    title: "Not registered. Too long password",
+    credentials: { username: "user10", password: "P".repeat(21) },
+    message: NOTIFICATIONS.LONG_PASSWORD
   }
 ];
 

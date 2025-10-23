@@ -8,6 +8,14 @@ import { test, expect, Page } from "@playwright/test";
 
 type TableRow = Record<string, string>;
 
+// interface ITableRow {
+//   "Last Name": string;
+//   "First Name": string;
+//   Email: string;
+//   Due: string;
+//   "Web Site": string;
+// }
+
 const testData: TableRow[] = [
   {
     "Last Name": "Smith",
@@ -44,31 +52,34 @@ const url = "https://the-internet.herokuapp.com/tables";
 async function getTableRow(page: Page, email: string): Promise<TableRow | undefined> {
   await page.goto(url);
   const table = page.locator("#table2");
-  const rows = await table.locator("tbody tr").all();
   const headers = await table.locator("th").allInnerTexts();
-  for (const row of rows) {
-    const rowData: TableRow = {};
-    const cells = await row.locator("td").all();
-    for (let i = 0; i < cells.length; i++) {
-      const header = headers[i];
-      const value = await cells[i]!.innerText();
-      if (header) {
-        rowData[header] = value;
-      }
-    }
-    if (rowData.Email === email) {
-      return rowData;
-    }
+  const matchingRow = table.locator("tbody tr").filter({ hasText: email }).first();
+
+  if ((await matchingRow.count()) === 0) {
+    return undefined;
   }
-  return undefined;
+
+  const cells = await matchingRow.locator("td").all();
+  const rowData: TableRow = {};
+
+  for (let i = 0; i < cells.length; i++) {
+    const header = headers[i];
+    if (!header) continue;
+    const value = await cells[i]!.innerText();
+    rowData[header] = value;
+  }
+  return rowData;
 }
 
 test.describe("[HW-21][Get row by email]", () => {
   for (const { Email } of testData) {
-    test(Email!, async ({ page }) => {
+    test(`By '${Email}' get users' data from the table`, async ({ page }) => {
       const row = await getTableRow(page, Email!);
       expect(row).toBeDefined();
-      expect(row?.Email).toBe(Email);
+      for (const key in row) {
+        if (key === "Action") continue;
+        expect(row![key]).toBe(testData.find((data) => data.Email === Email)![key]);
+      }
     });
   }
 });

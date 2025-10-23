@@ -39,57 +39,57 @@ enum NOTIFICATIONS {
 
 const invalidCredentials: IInvalidCredentials[] = [
   {
-    title: "Not registered. Short username",
+    title: "2 characters username not registered",
     credentials: { username: "us", password: "Password1" },
     message: NOTIFICATIONS.SHORT_USERNAME
   },
   {
-    title: "Not registered. Username with spaces",
+    title: "Only spaces username not registered",
     credentials: { username: " ", password: "Password1" },
     message: NOTIFICATIONS.BAN_SPACES
   },
   {
-    title: "Not registered. Empty username",
+    title: "Empty username not registered",
     credentials: { username: "", password: "Password1" },
     message: NOTIFICATIONS.EMPTY_USERNAME
   },
   {
-    title: "Not registered. Username with leading space",
+    title: "Username with leading space not registered",
     credentials: { username: " user3", password: "Password1" },
     message: NOTIFICATIONS.BAN_SPACES
   },
   {
-    title: "Not registered. Username with trailing space",
+    title: "Username with trailing space not registered",
     credentials: { username: "user4 ", password: "Password1" },
     message: NOTIFICATIONS.BAN_SPACES
   },
   {
-    title: "Not registered. Short password",
+    title: "4 characters password not registered",
     credentials: { username: "user5", password: "pass" },
     message: NOTIFICATIONS.SHORT_PASSWORD
   },
   {
-    title: "Not registered. Password without uppercase",
+    title: "Password without uppercase not registered",
     credentials: { username: "user6", password: "password" },
     message: NOTIFICATIONS.PASSWORD_MISS_UPPERCASE
   },
   {
-    title: "Not registered. Password without lowercase",
+    title: "Password without lowercase not registered",
     credentials: { username: "user7", password: "PASSWORD" },
     message: NOTIFICATIONS.PASSWORD_MISS_LOWERCASE
   },
   {
-    title: "Not registered. Empty password",
+    title: "Empty password not registered",
     credentials: { username: "user8", password: " " },
     message: NOTIFICATIONS.EMPTY_PASSWORD
   },
   {
-    title: "Not registered. Too long username",
+    title: "41 characters username not registered",
     credentials: { username: "u".repeat(41), password: "Password1" },
     message: NOTIFICATIONS.SHORT_USERNAME
   },
   {
-    title: "Not registered. Too long password",
+    title: "21 characters password not registered",
     credentials: { username: "user10", password: "P".repeat(21) },
     message: NOTIFICATIONS.LONG_PASSWORD
   }

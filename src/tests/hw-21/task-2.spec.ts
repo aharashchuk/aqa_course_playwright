@@ -48,38 +48,28 @@ const testData: TableRow[] = [
 ];
 
 const url = "https://the-internet.herokuapp.com/tables";
+const removeLastItem = (items: string[]): string[] => items.slice(0, -1);
 
-async function getTableRow(page: Page, email: string): Promise<TableRow | undefined> {
+async function getTableRow(page: Page, email: string): Promise<TableRow> {
   await page.goto(url);
   const table = page.locator("#table2");
-  const headers = await table.locator("th").allInnerTexts();
+  const headers = removeLastItem(await table.locator("th").allInnerTexts());
   const matchingRow = table.locator("tbody tr").filter({ hasText: email }).first();
 
-  if ((await matchingRow.count()) === 0) {
-    return undefined;
-  }
+  const cells = removeLastItem(await matchingRow.locator("td").allInnerTexts());
 
-  const cells = await matchingRow.locator("td").all();
-  const rowData: TableRow = {};
-
-  for (let i = 0; i < cells.length; i++) {
-    const header = headers[i];
-    if (!header) continue;
-    const value = await cells[i]!.innerText();
-    rowData[header] = value;
-  }
-  return rowData;
+  return headers.reduce(
+    (finalRow, header: string, idx: number) => (header ? ((finalRow[header] = cells[idx] ?? ""), finalRow) : finalRow),
+    {} as TableRow
+  );
 }
 
 test.describe("[HW-21][Get row by email]", () => {
-  for (const { Email } of testData) {
-    test(`By '${Email}' get users' data from the table`, async ({ page }) => {
-      const row = await getTableRow(page, Email!);
-      expect(row).toBeDefined();
-      for (const key in row) {
-        if (key === "Action") continue;
-        expect(row![key]).toBe(testData.find((data) => data.Email === Email)![key]);
-      }
+  for (const user of testData) {
+    test(`By '${user.Email}' get users' data from the table`, async ({ page }) => {
+      const row = await getTableRow(page, `${user.Email}`);
+
+      expect(row, `Incorrect user data with email: '${user.Email}'`).toEqual(user);
     });
   }
 });

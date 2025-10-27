@@ -5,10 +5,8 @@ import { generateProductData } from "data/salesPortal/products/generateProductDa
 import _ from "lodash";
 
 test.describe("[Sales Portal] [Products]", () => {
-  //test with fixtures version 1
-  test("Product Details", async ({ signInPage, homePage, productsListPage, addNewProductPage }) => {
-    await homePage.open();
-    await signInPage.waitForOpened();
+  test.beforeEach(async ({ homePage, signInPage, productsListPage, addNewProductPage }) => {
+    await signInPage.open();
     await signInPage.emailInput.fill(credentials.username);
     await signInPage.passwordInput.fill(credentials.password);
     await signInPage.loginButton.click();
@@ -16,6 +14,22 @@ test.describe("[Sales Portal] [Products]", () => {
     await homePage.clickOnViewModule("Products");
     await productsListPage.waitForOpened();
     await productsListPage.clickAddNewProduct();
+    await addNewProductPage.waitForOpened();
+  });
+
+  test("HW-22.Create product and check details in the table", async ({ productsListPage, addNewProductPage }) => {
+    await addNewProductPage.waitForOpened();
+    const productData = generateProductData();
+    await addNewProductPage.fillForm(productData);
+    await addNewProductPage.clickSave();
+    await productsListPage.waitForOpened();
+    await expect(productsListPage.toastMessage).toContainText(NOTIFICATIONS.PRODUCT_CREATED);
+    await expect(productsListPage.tableRowByName(productData.name)).toBeVisible();
+    const actual = await productsListPage.getProductData(productData.name);
+    expect(_.omit(actual, ["createdOn"])).toEqual(_.omit(productData, ["notes", "amount"]));
+  });
+
+  test("Create product and check details in the product modal", async ({ productsListPage, addNewProductPage }) => {
     await addNewProductPage.waitForOpened();
     const productData = generateProductData();
     await addNewProductPage.fillForm(productData);
@@ -28,6 +42,26 @@ test.describe("[Sales Portal] [Products]", () => {
     await detailsModal.waitForOpened();
     const actual = await detailsModal.getData();
     expect(_.omit(actual, ["createdOn"])).toEqual(productData);
+  });
+
+  test("HW-23.Delete product", async ({ productsListPage, addNewProductPage }) => {
+    await addNewProductPage.waitForOpened();
+    const productData = generateProductData();
+    await addNewProductPage.fillForm(productData);
+    await addNewProductPage.clickSave();
+    await productsListPage.waitForOpened();
+    await expect(productsListPage.toastMessage).toContainText(NOTIFICATIONS.PRODUCT_CREATED);
+    await productsListPage.closeToastMessage();
+    await expect(productsListPage.tableRowByName(productData.name)).toBeVisible();
+    const actual = await productsListPage.getProductData(productData.name);
+    expect(_.omit(actual, ["createdOn"])).toEqual(_.omit(productData, ["notes", "amount"]));
+    await productsListPage.deleteButton(productData.name).click();
+    const { deleteConfirmationModal } = productsListPage;
+    await deleteConfirmationModal.waitForOpened();
+    await deleteConfirmationModal.clickConfirm();
+    await productsListPage.waitForOpened();
+    await expect(productsListPage.toastMessage).toContainText(NOTIFICATIONS.PRODUCT_DELETED);
+    await expect(productsListPage.tableRowByName(productData.name)).toHaveCount(0);
   });
 
   //test with fixtures version 2

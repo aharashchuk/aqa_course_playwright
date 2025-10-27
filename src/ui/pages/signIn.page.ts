@@ -7,7 +7,7 @@ export class SignInPage extends SalesPortalPage {
   readonly emailInput = this.page.locator("#emailinput");
   readonly passwordInput = this.page.locator("#passwordinput");
   readonly loginButton = this.page.locator("button[type='submit']");
-  readonly uniqueElement = this.emailInput;
+  readonly uniqueElement = this.loginForm;
 
   async clickLoginButton() {
     await this.loginButton.click();

@@ -1,22 +1,18 @@
 import { test, expect } from "fixtures/pages.fixture";
+import { credentials } from "config/env";
 import { NOTIFICATIONS } from "data/salesPortal/notifications";
 import { generateProductData } from "data/salesPortal/products/generateProductData";
 import _ from "lodash";
 
 test.describe("[Sales Portal] [Products]", () => {
   //test with fixtures version 1
-  test("Product Details", async ({ homePage, productsListPage, addNewProductPage }) => {
-    //login page
-    const emailInput = page.locator("#emailinput");
-    const passwordInput = page.locator("#passwordinput");
-    const loginButton = page.locator("button[type='submit']");
+  test("Product Details", async ({ signInPage, homePage, productsListPage, addNewProductPage }) => {
     await homePage.open();
-    await expect(emailInput).toBeVisible();
-    await emailInput.fill(credentials.username);
-    await passwordInput.fill(credentials.password);
-    await loginButton.click();
+    await signInPage.waitForOpened();
+    await signInPage.emailInput.fill(credentials.username);
+    await signInPage.passwordInput.fill(credentials.password);
+    await signInPage.loginButton.click();
     await homePage.waitForOpened();
-    // await loginAsAdmin();
     await homePage.clickOnViewModule("Products");
     await productsListPage.waitForOpened();
     await productsListPage.clickAddNewProduct();

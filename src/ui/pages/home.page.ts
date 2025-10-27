@@ -1,5 +1,5 @@
 import { Locator } from "@playwright/test";
-import { SalesPortalPage } from "./salesPortal.page.js";
+import { SalesPortalPage } from "./salesPortal.page";
 
 type HomeModuleButton = "Products" | "Customers" | "Orders";
 

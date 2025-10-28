@@ -5,7 +5,7 @@ export const createProductSchema = {
   type: "object",
   properties: {
     User: userSchema,
-    ...obligatoryFieldsSchema,
+    ...obligatoryFieldsSchema
   },
   required: ["User", ...obligatoryRequredFields]
 };

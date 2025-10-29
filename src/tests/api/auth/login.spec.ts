@@ -4,7 +4,7 @@ import { credentials } from "config/env";
 import { STATUS_CODES } from "data/statusCodes";
 import _ from "lodash";
 import { validateResponse } from "utils/validateResponse.utils";
-import { userSchema } from "data/schemas/auth/user.schema";
+import { loginSchema } from "data/schemas/auth/login.schema";
 
 const { baseURL, endpoints } = apiConfig;
 
@@ -20,7 +20,7 @@ test.describe("[API] [Sales Portal] [Auth]", () => {
 
     await validateResponse(loginResponse, {
       status: STATUS_CODES.OK,
-      schema: userSchema,
+      schema: loginSchema,
       IsSuccess: true,
       ErrorMessage: null
     });

@@ -1,7 +1,7 @@
 import { obligatoryFieldsSchema, obligatoryRequredFields } from "../core.schema";
 import { userSchema } from "./user.schema";
 
-export const createProductSchema = {
+export const loginSchema = {
   type: "object",
   properties: {
     User: userSchema,

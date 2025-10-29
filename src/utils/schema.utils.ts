@@ -14,5 +14,6 @@ export function validateJsonSchema(body: object, schema: object) {
   } else {
     console.log("Data is not valid according to the schema.");
     console.log(validate.errors);
+    console.log(body);
   }
 }

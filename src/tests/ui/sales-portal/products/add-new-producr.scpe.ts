@@ -1,9 +1,10 @@
-import test, { expect } from "@playwright/test";
+import { test, expect } from "fixtures/pages.fixture";
 import { credentials } from "config/env";
 import { NOTIFICATIONS } from "data/salesPortal/notifications";
 import { generateProductData } from "data/salesPortal/products/generateProductData";
-// import { MANUFACTURERS } from "data/salesPortal/products/manufacturers";
-// import { IProduct } from "data/types/product.types";
+import { SignInPage } from "ui/pages/signIn.page";
+import { MANUFACTURERS } from "data/salesPortal/products/manufacturers";
+import { IProduct } from "data/types/product.types";
 import { HomePage } from "ui/pages/home.page";
 import { AddNewProductPage } from "ui/pages/products/addNewProduct.page";
 import { ProductsListPage } from "ui/pages/products/productsList.page";
@@ -17,18 +18,18 @@ import { ProductsListPage } from "ui/pages/products/productsList.page";
 // };
 
 test.describe("[Sales Portal] [Products]", async () => {
-  test.skip("Add new product OLD", async ({ page }) => {
-    const homePage = new HomePage(page);
-    const productsListPage = new ProductsListPage(page);
-    const addNewProductPage = new AddNewProductPage(page);
+  test.skip("Add new product OLD", async ({ signInPage, homePage, productsListPage, addNewProductPage }) => {
+    // const homePage = new HomePage(page);
+    // const productsListPage = new ProductsListPage(page);
+    // const addNewProductPage = new AddNewProductPage(page);
 
     // const spinner = page.locator(".spinner-border");
     // const toastMessage = page.locator(".toast-body");
 
     //login page
-    const emailInput = page.locator("#emailinput");
-    const passwordInput = page.locator("#passwordinput");
-    const loginButton = page.locator("button[type='submit']");
+    // const emailInput = page.locator("#emailinput");
+    // const passwordInput = page.locator("#passwordinput");
+    // const loginButton = page.locator("button[type='submit']");
 
     //home page
     // const welcomeText = page.locator(".welcome-text");

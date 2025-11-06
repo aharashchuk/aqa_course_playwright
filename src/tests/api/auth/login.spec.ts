@@ -1,9 +1,10 @@
 import test, { expect } from "@playwright/test";
 import { apiConfig } from "config/apiConfig";
+import { LoginApi } from "api/api/login.api";
 import { credentials } from "config/env";
 import { STATUS_CODES } from "data/statusCodes";
 import _ from "lodash";
-import { validateResponse } from "utils/validateResponse.utils";
+import { validateResponse } from "utils/validation/validateResponse.utils";
 import { loginSchema } from "data/schemas/auth/login.schema";
 
 const { baseURL, endpoints } = apiConfig;

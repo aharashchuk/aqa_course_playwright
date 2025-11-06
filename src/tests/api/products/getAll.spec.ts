@@ -70,7 +70,6 @@ test.describe("[API] [Sales Portal] [HW-24 Task-2.Get All Products]", () => {
 
     id = actualProductData._id;
 
-    //TODO: Action
 
     const getAllProductsResponse = await request.get(`${baseURL}${endpoints.productsAll}`, {
       headers: {

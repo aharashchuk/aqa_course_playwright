@@ -8,14 +8,14 @@ import { validateResponse } from "utils/validation/validateResponse.utils";
 export class ProductsApiService {
   constructor(private productsApi: ProductsApi) {}
 
-  async create(token: string, productData?: IProduct) {
+  async create(token: string, productData?: Partial<IProduct>) {
     const data = generateProductData(productData);
     const response = await this.productsApi.create(data, token);
     validateResponse(response, {
       status: STATUS_CODES.CREATED,
       IsSuccess: true,
       ErrorMessage: null,
-      schema: createProductSchema
+      schema: createProductSchema,
     });
     return response.body.Product;
   }
@@ -23,7 +23,7 @@ export class ProductsApiService {
   async delete(token: string, id: string) {
     const response = await this.productsApi.delete(id, token);
     validateResponse(response, {
-      status: STATUS_CODES.DELETED
+      status: STATUS_CODES.DELETED,
     });
   }
 }

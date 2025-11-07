@@ -50,3 +50,5 @@ export interface IGetProductsParams {
   page: number;
   limit: number;
 }
+
+export type ProductsTableHeader = "Name" | "Price" | "Manufacturer" | "Created On";

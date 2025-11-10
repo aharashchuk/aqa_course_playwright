@@ -1,12 +1,8 @@
 import { test, expect } from "fixtures/api.fixture";
-import { generateProductData } from "data/salesPortal/products/generateProductData";
-import { createProductSchema } from "data/schemas/products/create.schema";
 import { getAllProductsSchema } from "data/schemas/products/getAll.schema";
 import { STATUS_CODES } from "data/statusCodes";
 import _ from "lodash";
 import { validateResponse } from "utils/validation/validateResponse.utils";
-import { loginSchema } from "data/schemas/auth/login.schema";
-
 
 test.describe("[API] [Sales Portal] [HW-24 Task-2.Get All Products]", () => {
   let id = "";

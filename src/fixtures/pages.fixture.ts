@@ -4,11 +4,11 @@ import {
   // Page
 } from "@playwright/test";
 import { HomePage } from "ui/pages/home.page";
-import { LoginPage } from "ui/pages/login.page";
+import { LoginPage } from "/ui/pages/login.page";
 import { AddNewProductPage } from "ui/pages/products/addNewProduct.page";
 import { ProductsListPage } from "ui/pages/products/productsList.page";
 import { AddNewProductUIService } from "ui/service/addNewProduct.ui-service";
-import { HomeUIService } from "ui/service/home.ui-service";
+import { HomeUIService } from "/ui/service/home.ui-service";
 import { LoginUIService } from "ui/service/login.ui-service";
 import { ProductsListUIService } from "ui/service/productsList.ui-service";
 

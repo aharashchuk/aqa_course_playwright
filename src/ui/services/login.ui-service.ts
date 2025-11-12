@@ -20,7 +20,7 @@ export class LoginUIService {
   async login(credentials: ICredentials) {
     await this.loginPage.open();
     await this.loginPage.fillCredentials(credentials);
-    await this.loginPage.clickLogin();
+    await this.loginPage.clickLoginButton();
     await this.homePage.waitForOpened();
     const token = (await this.page.context().cookies()).find((c) => c.name === "Authorization")!.value;
     return token;

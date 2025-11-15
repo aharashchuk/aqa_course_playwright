@@ -12,12 +12,20 @@ export interface IProduct {
 // export type IProductInTable = Pick<IProduct, "name" | "manufacturer" | "price"> & { createdOn: string };
 export interface IProductInTable extends Pick<IProduct, "name" | "manufacturer" | "price">, ICreatedOn {}
 
+export interface ITopProduct extends Pick<IProduct, "name"> {
+  sales: number;
+}
+
 export interface IProductDetails extends Required<IProduct>, ICreatedOn {}
 
 export interface IProductFromResponse extends Required<IProduct>, ICreatedOn, ID {}
 
 export interface IProductResponse extends IResponseFields {
   Product: IProductFromResponse;
+}
+
+export interface IProductFromOrder extends IProduct, ID {
+  received: boolean;
 }
 
 export interface IProductsResponse extends IResponseFields {

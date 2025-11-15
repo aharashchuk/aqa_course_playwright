@@ -12,7 +12,6 @@ export interface ICustomer {
   flat: string;
   phone: string;
   notes?: string;
-  createdAt: Date;
 } 
 
 export interface ICustomerInTable extends Pick<ICustomer, "email" | "name" | "country">, ICreatedOn {}
@@ -20,11 +19,3 @@ export interface ICustomerInTable extends Pick<ICustomer, "email" | "name" | "co
 export type ICustomerDetails = Required<ICustomer>;
 
 export interface ICustomerFromResponse extends Required<ICustomer>, ICreatedOn, ID {}
-
-export interface ICustomerMetrics {
-  _id: ICustomerFromResponse["_id"];
-  totalSpent: number;
-  orderCount: number;
-  customerName: ICustomerFromResponse["name"];
-  customerEmail: ICustomerFromResponse["email"];
-}

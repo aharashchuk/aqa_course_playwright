@@ -5,7 +5,7 @@ import { formatNumber } from "utils/formatNumber.utils";
 
 test.describe("[Integration] [Sales Portal] [Home Page] [Metrics Display]", () => {
   for (const testCase of metricsTestCases) {
-    test(`Metrics Display Test: ${testCase.title}`, async ({ loginAsAdmin, homePage, mock }) => {
+    test(`${testCase.title}`, async ({ loginAsAdmin, homePage, mock }) => {
       const metricsData = generateMetricsResponseData(testCase.metricsData);
       await mock.metricsHomePage(metricsData);
       await loginAsAdmin();

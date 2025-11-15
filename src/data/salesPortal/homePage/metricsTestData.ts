@@ -66,5 +66,5 @@ export const metricsTestCases: IMetricsCase[] = [
         customerGrowth: []
       }
     })
-  }
+  },
 ];

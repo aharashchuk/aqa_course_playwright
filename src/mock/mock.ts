@@ -35,4 +35,5 @@ export class Mock {
         body: JSON.stringify(body),
       });
     });
+  }
 }

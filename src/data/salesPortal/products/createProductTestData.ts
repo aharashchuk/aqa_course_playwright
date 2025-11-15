@@ -16,12 +16,10 @@ import { STATUS_CODES } from "data/statusCodes";
 import { ERROR_MESSAGES } from "../notifications";
 import { faker } from "@faker-js/faker";
 import _ from "lodash";
+import { ICase } from "data/types/core.types";
 
-interface ICreateProductCase {
-  title: string;
+interface ICreateProductCase extends ICase {
   productData: Partial<IProduct>;
-  expectedStatus?: number;
-  expectedErrorMessage?: string;
 }
 
 export const createProductPositiveCases: ICreateProductCase[] = [

@@ -1,3 +1,5 @@
+import { IProduct } from "./product.types";
+
 export interface ID {
   _id: string;
 }
@@ -31,4 +33,10 @@ export interface IDate {
   year: number;
   month: number;
   day: number;
+}
+
+export interface ICase {
+  title: string;
+  expectedStatus?: number;
+  expectedErrorMessage?: string;
 }

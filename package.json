@@ -36,6 +36,7 @@
     "@types/lodash": "^4.17.20",
     "@types/moment": "^2.11.29",
     "@types/node": "^24.7.0",
+    "@types/numeral": "^2.0.5",
     "eslint": "^9.37.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",

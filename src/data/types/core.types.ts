@@ -1,5 +1,11 @@
+import { IProduct } from "./product.types";
+
 export interface ID {
   _id: string;
+}
+
+export interface ICreatedOn {
+  createdOn: string;
 }
 
 export interface IResponseFields {
@@ -23,3 +29,14 @@ export interface IResponse<T extends object | null> {
 
 export type SortOrder = "asc" | "desc";
 
+export interface IDate {
+  year: number;
+  month: number;
+  day: number;
+}
+
+export interface ICase {
+  title: string;
+  expectedStatus?: number;
+  expectedErrorMessage?: string;
+}

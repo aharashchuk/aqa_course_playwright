@@ -16,6 +16,8 @@ export interface ICustomer {
 
 export interface ICustomerInTable extends Pick<ICustomer, "email" | "name" | "country">, ICreatedOn {}
 
+export type CustomersTableHeader = "Email" | "Name" | "Country" | "Created On";
+
 export type ICustomerDetails = Required<ICustomer>;
 
 export interface ICustomerFromResponse extends Required<ICustomer>, ICreatedOn, ID {}

@@ -2,20 +2,6 @@ import { test, expect } from "fixtures/business.fixture";
 import { _ } from "lodash";
 import { generateProductData } from "data/salesPortal/products/generateProductData";
 import { NOTIFICATIONS } from "data/salesPortal/notifications";
-import { AddNewProductPage } from "ui/pages/products";
-
-// Реализовать е2е тест со следующими шагами:
-//   - залогиниться
-//   - Создать продукт через API
-//   - Перейти на страницу Edit Product
-//   - Заполнить поля валидными данными
-//   - Сохранить продукт
-//   - Проверить продукт в таблице
-//   - Открыть модалку деталей продукта
-//   - Проверить данные в модалке
-
-//   За собой удаляем продукт через апи, разумеется:)
-
 
 test.describe("[Sales Portal] [Products] [Edit]", async () => {
   let id = "";
@@ -28,7 +14,6 @@ test.describe("[Sales Portal] [Products] [Edit]", async () => {
 
   test("Add new product with services", async ({
     loginUIService,
-    addNewProductUIService,
     productsApiService,
     productsListUIService,
     productsListPage,
@@ -37,7 +22,6 @@ test.describe("[Sales Portal] [Products] [Edit]", async () => {
     token = await loginUIService.loginAsAdmin();
     const createdProduct = await productsApiService.create(token);
     id = createdProduct._id;
-    // await addNewProductPage.clickSave();
     await productsListUIService.open();
     await productsListPage.clickAction(createdProduct.name, "edit");
     await editProductPage.waitForOpened();

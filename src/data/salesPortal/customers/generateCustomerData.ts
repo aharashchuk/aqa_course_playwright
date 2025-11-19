@@ -20,8 +20,8 @@ export function generateCustomerData(params?: Partial<ICustomer>): ICustomer {
     country: faker.helpers.arrayElement(COUNTRIES),
     city: faker.location.city(),
     street: faker.location.street(),
-    house: faker.number.int({ min: 1, max: 999 }).toString(),
-    flat: faker.number.int({ min: 1, max: 9999 }).toString(),
+    house: faker.number.int({ min: 1, max: 999 }),
+    flat: faker.number.int({ min: 1, max: 9999 }),
     phone: faker.phone.number({ style: "international" }),
     notes: faker.string.alphanumeric({ length: 250 }),
     ...params

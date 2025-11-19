@@ -12,7 +12,7 @@ test.describe("[Sales Portal] [Products] [Edit]", async () => {
     id = "";
   });
 
-  test("Add new product with services", async ({
+  test("Edit product with services", async ({
     loginUIService,
     productsApiService,
     productsListUIService,

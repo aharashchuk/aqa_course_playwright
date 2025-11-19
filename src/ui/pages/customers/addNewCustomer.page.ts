@@ -22,8 +22,8 @@ export class AddNewCustomerPage extends SalesPortalPage {
     if (customerData.country) await this.countrySelect.selectOption(customerData.country);
     if (customerData.city) await this.cityInput.fill(customerData.city);
     if (customerData.street) await this.streetInput.fill(customerData.street);
-    if (customerData.house) await this.houseInput.fill(customerData.house);
-    if (customerData.flat) await this.flatInput.fill(customerData.flat);
+    if (customerData.house) await this.houseInput.fill(customerData.house.toString());
+    if (customerData.flat) await this.flatInput.fill(customerData.flat.toString());
     if (customerData.phone) await this.phoneInput.fill(customerData.phone);
     if (customerData.notes) await this.notesInput.fill(customerData.notes);
   }

@@ -1,5 +1,5 @@
 import { MANUFACTURERS } from "data/salesPortal/products/manufacturers";
-import { ID, IResponseFields,  ICreatedOn } from "./core.types";
+import { ID, IResponseFields, ICreatedOn } from "./core.types";
 
 export interface IProduct {
   name: string;

@@ -1,5 +1,5 @@
 import { test, expect } from "fixtures/business.fixture";
-import { _ } from "lodash";
+import _ from "lodash";
 import { NOTIFICATIONS } from "data/salesPortal/notifications";
 
 test.describe("[Sales Portal] [Customers] [Create]", async () => {

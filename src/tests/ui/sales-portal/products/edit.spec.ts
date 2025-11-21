@@ -1,5 +1,5 @@
 import { test, expect } from "fixtures/business.fixture";
-import { _ } from "lodash";
+import _ from "lodash";
 import { generateProductData } from "data/salesPortal/products/generateProductData";
 import { NOTIFICATIONS } from "data/salesPortal/notifications";
 

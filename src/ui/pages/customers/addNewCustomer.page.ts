@@ -4,7 +4,7 @@ import { SalesPortalPage } from "../salesPortal.page";
 export class AddNewCustomerPage extends SalesPortalPage {
   readonly title = this.page.locator("h2.page-title-text");
   readonly emailInput = this.page.locator("#inputEmail");
-  readonly nameInput = this.page.locator("#inputName")
+  readonly nameInput = this.page.locator("#inputName");
   readonly countrySelect = this.page.locator("#inputCountry");
   readonly cityInput = this.page.locator("#inputCity");
   readonly streetInput = this.page.locator("#inputStreet");

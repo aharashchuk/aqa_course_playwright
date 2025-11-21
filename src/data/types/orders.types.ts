@@ -1,4 +1,3 @@
-import { IO } from "inspector/promises";
 import { ID, IResponseFields,  ICreatedOn } from "./core.types";
 import { ICustomerFromResponse } from "./customers.types";
 import { IProductFromOrder } from "./product.types";

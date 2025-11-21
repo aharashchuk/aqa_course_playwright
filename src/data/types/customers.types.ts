@@ -12,7 +12,7 @@ export interface ICustomer {
   flat: string;
   phone: string;
   notes?: string;
-} 
+}
 
 export interface ICustomerInTable extends Pick<ICustomer, "email" | "name" | "country">, ICreatedOn {}
 

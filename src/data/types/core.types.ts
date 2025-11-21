@@ -1,5 +1,3 @@
-import { IProduct } from "./product.types";
-
 export interface ID {
   _id: string;
 }

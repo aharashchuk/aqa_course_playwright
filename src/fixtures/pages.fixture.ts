@@ -8,9 +8,13 @@ import { LoginPage } from "ui/pages/login.page";
 import { AddNewProductPage } from "ui/pages/products/addNewProduct.page";
 import { ProductsListPage } from "ui/pages/products/productsList.page";
 import { AddNewProductUIService } from "ui/services/addNewProduct.ui-service";
+import { EditProductPage } from "ui/pages/products/editProduct.page";
 import { HomeUIService } from "ui/services/home.ui-service";
 import { LoginUIService } from "ui/services/login.ui-service";
 import { ProductsListUIService } from "ui/services/productsList.ui-service";
+import { CustomersListPage } from "ui/pages/customers/customersList.page";
+import { AddNewCustomerPage } from "ui/pages/customers/addNewCustomer.page";
+import { AddNewCustomerUIService } from "ui/services/addNewCustomer.ui.service";
 
 export interface IPages {
   //pages
@@ -18,12 +22,16 @@ export interface IPages {
   homePage: HomePage;
   productsListPage: ProductsListPage;
   addNewProductPage: AddNewProductPage;
+  editProductPage: EditProductPage;
+  customersListPage: CustomersListPage;
+  addNewCustomerPage: AddNewCustomerPage;
 
   //ui-services
   homeUIService: HomeUIService;
   productsListUIService: ProductsListUIService;
   addNewProductUIService: AddNewProductUIService;
   loginUIService: LoginUIService;
+  addNewCustomerUIService: AddNewCustomerUIService;
 }
 
 export const test = base.extend<IPages>({
@@ -40,6 +48,15 @@ export const test = base.extend<IPages>({
   },
   addNewProductPage: async ({ page }, use) => {
     await use(new AddNewProductPage(page));
+  },
+  editProductPage: async ({ page }, use) => {
+    await use(new EditProductPage(page));
+  },
+  customersListPage: async ({ page }, use) => {
+    await use(new CustomersListPage(page));
+  },
+  addNewCustomerPage: async ({ page }, use) => {
+    await use(new AddNewCustomerPage(page));
   },
 
   //ui-services
@@ -58,6 +75,9 @@ export const test = base.extend<IPages>({
   loginUIService: async ({ page }, use) => {
     await use(new LoginUIService(page));
   },
+  addNewCustomerUIService: async ({ page }, use) => {
+    await use(new AddNewCustomerUIService(page));
+  }
 });
 
 // export class Pages {

@@ -1,4 +1,4 @@
-import { ID, IResponseFields,  ICreatedOn } from "./core.types";
+import { ID, IResponseFields, ICreatedOn } from "./core.types";
 import { ICustomerFromResponse } from "./customers.types";
 import { IProductFromOrder } from "./product.types";
 import { IUser } from "./user.types";

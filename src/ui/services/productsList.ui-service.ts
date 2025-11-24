@@ -1,9 +1,10 @@
-import { expect, Page } from "@playwright/test";
+import { test, expect, Page } from "@playwright/test";
 import { IProductDetails } from "data/types/product.types";
 import _ from "lodash";
 import { AddNewProductPage } from "ui/pages/products/addNewProduct.page";
 import { ProductsListPage } from "ui/pages/products/productsList.page";
 import { convertToFullDateAndTime } from "utils/date.utils";
+import { logStep } from "utils/report/logStep.utils";
 
 export class ProductsListUIService {
   productsListPage: ProductsListPage;
@@ -14,21 +15,25 @@ export class ProductsListUIService {
     this.addNewProductPage = new AddNewProductPage(page);
   }
 
+  @logStep("Open Add New Product page")
   async openAddNewProductPage() {
     await this.productsListPage.clickAddNewProduct();
     await this.addNewProductPage.waitForOpened();
   }
 
+  @logStep("Open Details modal on Products List page")
   async openDetailsModal(productName: string) {
     await this.productsListPage.detailsButton(productName).click();
     await this.productsListPage.detailsModal.waitForOpened();
   }
 
+  @logStep("Open Delete modal on Products List page")
   async openDeleteModal(productName: string) {
     await this.productsListPage.clickAction(productName, "delete");
     await this.productsListPage.deleteModal.waitForOpened();
   }
 
+  @logStep("Delete product on Products List page")
   async deleteProduct(productName: string) {
     await this.productsListPage.clickAction(productName, "delete");
     await this.productsListPage.deleteModal.waitForOpened();
@@ -36,18 +41,23 @@ export class ProductsListUIService {
     await this.productsListPage.deleteModal.waitForClosed();
   }
 
+  @logStep("Search for product on Products List page")
   async search(text: string) {
-    await this.productsListPage.fillSearchInput(text);
-    await this.productsListPage.clickSearch();
-    await this.productsListPage.waitForOpened();
+    await test.step(`Search for "${text}" on Products List page`, async () => {
+      await this.productsListPage.fillSearchInput(text);
+      await this.productsListPage.clickSearch();
+      await this.productsListPage.waitForOpened();
+    });
   }
 
+  @logStep("Open Products List page")
   async open() {
     await this.productsListPage.open("products");
     await this.productsListPage.waitForOpened();
   }
 
-  assertDetailsData(actual: IProductDetails, expected: IProductDetails) {
+  @logStep("Assert product details data on Products List page")
+  async assertDetailsData(actual: IProductDetails, expected: IProductDetails) {
     expect(actual).toEqual({
       ..._.omit(expected, ["_id"]),
       createdOn: convertToFullDateAndTime(expected.createdOn),
@@ -55,6 +65,9 @@ export class ProductsListUIService {
   }
 
   async assertProductInTable(productName: string, { visible }: { visible: boolean }) {
-    await expect(this.productsListPage.tableRowByName(productName)).toBeVisible({ visible });
+    await expect(
+      this.productsListPage.tableRowByName(productName),
+      `Product "${productName}" should be in table`,
+    ).toBeVisible({ visible });
   }
 }

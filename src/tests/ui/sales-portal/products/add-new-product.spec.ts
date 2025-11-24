@@ -7,6 +7,7 @@ import { generateProductData } from "data/salesPortal/products/generateProductDa
 import { HomePage } from "ui/pages/home.page";
 import { AddNewProductPage } from "ui/pages/products/addNewProduct.page";
 import { ProductsListPage } from "ui/pages/products/productsList.page";
+import { TAGS } from "data/tags";
 
 // const productData: IProduct = {
 //   name: "Product" + Date.now(),
@@ -91,21 +92,18 @@ test.describe("[Sales Portal] [Products]", async () => {
     await expect(productsListPage.tableRowByName(productData.name)).toBeVisible();
   });
 
-  test("Add new product with services", async ({
-    loginUIService,
-    // homeUIService,
-    // productsListUIService,
-    addNewProductUIService,
-    productsListPage,
-  }) => {
-    token = await loginUIService.loginAsAdmin();
-    // await homeUIService.openModule("Products");
-    // await productsListUIService.openAddNewProductPage();
-    await addNewProductUIService.open();
-    const createdProduct = await addNewProductUIService.create();
-    id = createdProduct._id;
-    await expect(productsListPage.toastMessage).toContainText(NOTIFICATIONS.PRODUCT_CREATED);
-    await expect(productsListPage.tableRowByName(createdProduct.name)).toBeVisible();
+  test(
+    "Add new product with services",
+    {
+      tag: [TAGS.SMOKE, TAGS.REGRESSION, TAGS.PRODUCTS],
+    },
+    async ({ addNewProductUIService, productsListPage }) => {
+      await addNewProductUIService.open();
+      token = await productsListPage.getAuthToken();
+      const createdProduct = await addNewProductUIService.create();
+      id = createdProduct._id;
+      await expect(productsListPage.toastMessage).toContainText(NOTIFICATIONS.PRODUCT_CREATED);
+      await expect(productsListPage.tableRowByName(createdProduct.name)).toBeVisible();
   });
 
   test.afterEach(async ({ productsApiService }) => {

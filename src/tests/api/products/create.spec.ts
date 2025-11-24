@@ -7,6 +7,7 @@ import { validateResponse } from "utils/validation/validateResponse.utils";
 import { IProduct } from "data/types/product.types";
 import { createProductPositiveCases, createProductNegativeCases } from "data/salesPortal/products/createProductTestData";
 import { title } from "process";
+import { TAGS } from "data/tags";
 
 test.describe("[API] [Sales Portal] [Products]", () => {
   let id = "";

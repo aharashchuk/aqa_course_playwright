@@ -1,6 +1,7 @@
 import { Page } from "@playwright/test";
 import { HomeModuleButton, HomePage } from "ui/pages/home.page";
 import { ProductsListPage } from "ui/pages/products/productsList.page";
+import { logStep } from "utils/report/logStep.utils";
 
 export class HomeUIService {
   homePage: HomePage;
@@ -10,6 +11,7 @@ export class HomeUIService {
     this.productsListPage = new ProductsListPage(page);
   }
 
+  @logStep("Open module from Home page")
   async openModule(moduleName: HomeModuleButton) {
     await this.homePage.clickOnViewModule(moduleName);
 

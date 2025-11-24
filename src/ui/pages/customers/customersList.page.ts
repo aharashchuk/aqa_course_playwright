@@ -1,5 +1,6 @@
 import { SalesPortalPage } from "../salesPortal.page";
 import { ICustomer, ICustomerInTable, CustomersTableHeader } from "data/types/customers.types";
+import { logStep } from "utils/report/logStep.utils";
 
 export class CustomersListPage extends SalesPortalPage {
   readonly title = this.page.locator("h2.fw-bold");
@@ -27,11 +28,13 @@ export class CustomersListPage extends SalesPortalPage {
   readonly searchButton = this.page.locator("#search-customer");
 
   readonly uniqueElement = this.addNewCustomerButton;
-
+  
+  @logStep("Click Add New Customer button on Customers List page")
   async clickAddNewCustomer() {
     await this.addNewCustomerButton.click();
   }
 
+  @logStep("Get customer data from Customers List page")
   async getCustomerData(email: string): Promise<ICustomerInTable> {
     return {
       email: await this.emailCell(email).innerText(),
@@ -41,6 +44,7 @@ export class CustomersListPage extends SalesPortalPage {
     };
   }
 
+  @logStep("Get all customers data from Customers List page")
   async getTableData(): Promise<ICustomerInTable[]> {
     const data: ICustomerInTable[] = [];
 
@@ -57,20 +61,24 @@ export class CustomersListPage extends SalesPortalPage {
     return data;
   }
 
+  @logStep("Click action button in Customers List page")
   async clickAction(email: string, action: "edit" | "details" | "delete") {
     if (action === "edit") await this.editButton(email).click();
     if (action === "delete") await this.deleteButton(email).click();
     if (action === "details") await this.detailsButton(email).click();
   }
 
+  @logStep("Click table header in Customers List page")
   async clickTableHeader(name: CustomersTableHeader) {
     await this.tableHeaderNamed(name).click();
   }
 
+  @logStep("Fill search input in Customers List page")
   async fillSearchInput(text: string) {
     await this.searchInput.fill(text);
   }
 
+  @logStep("Click search button in Customers List page")
   async clickSearch() {
     await this.searchButton.click();
   }

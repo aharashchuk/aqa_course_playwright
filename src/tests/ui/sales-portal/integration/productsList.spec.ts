@@ -114,7 +114,7 @@ test.describe("[Integration] [Sales Portal] [Products] [Table Sorting]", () => {
       test(
         `Field: ${header}, direction: ${direction}`,
         { tag: [TAGS.SMOKE, TAGS.REGRESSION, TAGS.INTEGRATION, TAGS.UI, TAGS.PRODUCTS] },
-        async ({ productsListPage, page, mock }) => {
+        async ({ loginAsAdmin, productsListPage, page, mock }) => {
           const headersMapper: Record<string, ProductsSortField> = {
             Name: "name",
             Price: "price",
@@ -139,7 +139,8 @@ test.describe("[Integration] [Sales Portal] [Products] [Table Sorting]", () => {
             },
           });
 
-          await productsListPage.open();
+          // await loginAsAdmin();
+          await page.goto(SALES_PORTAL_URL + "products");
           await productsListPage.waitForOpened();
 
           await mock.productsPage({

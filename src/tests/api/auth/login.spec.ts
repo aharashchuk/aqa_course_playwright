@@ -9,9 +9,7 @@ import { TAGS } from "data/tags";
 test.describe("[API] [Sales Portal] [Auth]", () => {
   test(
     "HW-24 Task-1. User Login with valid credentials",
-    {
-      tag: [TAGS.SMOKE, TAGS.REGRESSION, TAGS.API, TAGS.AUTH],
-    },
+    { tag: [TAGS.SMOKE, TAGS.REGRESSION, TAGS.API, TAGS.AUTH] },
     async ({ loginApi }) => {
       const loginResponse = await loginApi.login(credentials);
 

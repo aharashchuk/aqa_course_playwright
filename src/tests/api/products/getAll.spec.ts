@@ -3,6 +3,7 @@ import { getAllProductsSchema } from "data/schemas/products/getAll.schema";
 import { STATUS_CODES } from "data/statusCodes";
 import _ from "lodash";
 import { validateResponse } from "utils/validation/validateResponse.utils";
+import { TAGS } from "data/tags";
 
 test.describe("[API] [Sales Portal] [HW-24 Task-2.Get All Products]", () => {
   let id = "";
@@ -12,27 +13,29 @@ test.describe("[API] [Sales Portal] [HW-24 Task-2.Get All Products]", () => {
     if (id) await productsApiService.delete(token, id);
   });
 
-  test("Get All Products", async ({ loginApiService, productsApiService, productsApi }) => {
-    // const loginResponse = await request.post(baseURL + endpoints.login, {
-    //   data: credentials,
-    //   headers: {
-    //     "content-type": "application/json",
-    //   }
-    // });
-    const token = await loginApiService.loginAsAdmin();
-    const createdProduct = await productsApiService.create(token);
-    const id = createdProduct._id;
+  test("Get All Products", 
+    { tag: [TAGS.SMOKE,TAGS.REGRESSION, TAGS.API, TAGS.PRODUCTS] },
+    async ({ loginApiService, productsApiService, productsApi }) => {
+      // const loginResponse = await request.post(baseURL + endpoints.login, {
+      //   data: credentials,
+      //   headers: {
+      //     "content-type": "application/json",
+      //   }
+      // });
+      const token = await loginApiService.loginAsAdmin();
+      const createdProduct = await productsApiService.create(token);
+      const id = createdProduct._id;
 
-    const getAllProductsResponse = await productsApi.getAll(token);
+      const getAllProductsResponse = await productsApi.getAll(token);
 
-    const getAllProductsBody = getAllProductsResponse.body;
-    await validateResponse(getAllProductsResponse, {
-      status: STATUS_CODES.OK,
-      schema: getAllProductsSchema,
-      IsSuccess: true,
-      ErrorMessage: null
+      const getAllProductsBody = getAllProductsResponse.body;
+      await validateResponse(getAllProductsResponse, {
+        status: STATUS_CODES.OK,
+        schema: getAllProductsSchema,
+        IsSuccess: true,
+        ErrorMessage: null
+      });
+      const product = getAllProductsBody["Products"].find((prod: { _id: string; }) => prod._id === id);
+      expect(product).toEqual(createdProduct);
     });
-    const product = getAllProductsBody["Products"].find((prod: { _id: string; }) => prod._id === id);
-    expect(product).toEqual(createdProduct);
-  });
 });

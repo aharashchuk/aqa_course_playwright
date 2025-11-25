@@ -21,8 +21,10 @@ export abstract class SalesPortalPage extends BasePage {
   }
 
   @logStep("Open Sales Portal page")
-  async open(route?: string) {
-    await this.page.goto(SALES_PORTAL_URL + route);
+  async open(route: string = "") {
+    const base = SALES_PORTAL_URL.endsWith("/") ? SALES_PORTAL_URL : SALES_PORTAL_URL + "/";
+    const path = route ? route.replace(/^\//, "") : "";
+    await this.page.goto(base + path);
   }
 
   @logStep("Close toast message on Sales Portal page")

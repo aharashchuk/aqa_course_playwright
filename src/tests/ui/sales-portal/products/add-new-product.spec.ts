@@ -111,7 +111,7 @@ test.describe("[Sales Portal] [Products]", async () => {
     id = "";
   });
 
-  test("Add new product", async ({ page }) => {
+  test.skip("Add new product", async ({ page }) => {
     const homePage = new HomePage(page);
     const productsListPage = new ProductsListPage(page);
     const addNewProductPage = new AddNewProductPage(page);

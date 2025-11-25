@@ -1,8 +1,13 @@
 export enum TAGS {
   SMOKE = "@smoke",
   REGRESSION = "@regression",
-  PRODUCTS = "@products",
-  AUTH = "@auth",
+  INTEGRATION = "@integration",
+  E2E = "@e2e",
   API = "@api",
-  UI = "@ui"
+  UI = "@ui",
+  AUTH = "@auth",
+  HOME_PAGE = "@home-page",
+  PRODUCTS = "@products",
+  CUSTOMERS = "@customers",
+
 }

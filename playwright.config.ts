@@ -66,6 +66,11 @@ export default defineConfig({
       testDir: "src/tests/ui/sales-portal",
     },
     {
+      name: "api-tests",
+      testDir: "src/tests/api",
+      use: {}
+    },
+    {
       name: "chromium",
       use: { ...devices["Desktop Chrome"], headless: false }
     }

@@ -5,6 +5,7 @@ import { STATUS_CODES } from "data/statusCodes";
 import { ICustomer, ICustomerResponse } from "data/types/customers.types";
 import _ from "lodash";
 import { AddNewCustomerPage, CustomersListPage } from "ui/pages/customers";
+import { logStep } from "utils/report/logStep.utils";
 
 export class AddNewCustomerUIService {
   addNewCustomerPage: AddNewCustomerPage;
@@ -14,11 +15,13 @@ export class AddNewCustomerUIService {
     this.customersListPage = new CustomersListPage(page);
   }
 
+  @logStep("Open Add New Customer page")
   async open() {
     await this.addNewCustomerPage.open("customers/add");
     await this.addNewCustomerPage.waitForOpened();
   }
 
+  @logStep("Create new customer via UI")
   async create(customerData?: Partial<ICustomer>) {
     const data = generateCustomerData(customerData);
     await this.addNewCustomerPage.fillForm(data);
